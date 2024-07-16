@@ -4,13 +4,7 @@ import ImagenBanner from "../assets/banner.png"
 
 const HomeBanner = () => (
   <div className="relative h-screen w-full overflow-hidden">
-    <div 
-      className="absolute inset-0 bg-cover bg-center"
-      style={{
-        backgroundImage: "url('../assets/banner.png')",
-        filter: "brightness(50%)"
-      }}
-    ></div>
+    <img class="h-full w-full " src={ImagenBanner} alt="Banner" />
     <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
       <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-center">
         Rincón Gastronómico

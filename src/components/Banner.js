@@ -8,7 +8,7 @@ const Banner = () => (
       <h2 class="text-5xl text-customYellow">Rincón</h2>
       <h1 class="text-6xl text-white">Gastronomico</h1>
       <button class="inline-flex items-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700">
-        <a href="">Ver menú</a>
+        <a href="verMenu">Ver menú</a>
       </button>
     </div>
   </main>

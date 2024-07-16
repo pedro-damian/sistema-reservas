@@ -5,8 +5,6 @@ import ReservationForm from '../components/ReservationForm';
 
 const Reservations = () => {
   const handleReservationSubmit = (formData) => {
-    // Aquí normalmente enviarías los datos a una API
-    // Por ahora, los guardaremos en localStorage
     const existingReservations = JSON.parse(localStorage.getItem('reservations') || '[]');
     const updatedReservations = [...existingReservations, formData];
     localStorage.setItem('reservations', JSON.stringify(updatedReservations));

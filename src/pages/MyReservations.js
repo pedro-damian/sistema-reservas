@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -6,10 +7,13 @@ const MyReservations = () => {
   const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
-    // Aquí normalmente harías una llamada a una API para obtener las reservas
-    // Por ahora, usaremos datos de ejemplo almacenados en localStorage
-    const storedReservations = JSON.parse(localStorage.getItem('reservations') || '[]');
-    setReservations(storedReservations);
+    axios.get('http://localhost:8080/api/reservations')
+      .then(response => {
+        setReservations(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching reservations:', error);
+      });
   }, []);
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, Users } from 'lucide-react';
+import axios from 'axios';
 
 const ReservationForm = ({ onReservationSubmit }) => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,7 @@ const ReservationForm = ({ onReservationSubmit }) => {
     time: '',
     people: 1
   });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,32 +19,60 @@ const ReservationForm = ({ onReservationSubmit }) => {
     }));
   };
 
+  const validateForm = () => {
+    let formErrors = {};
+    if (!/^\d{9}$/.test(formData.phone)) {
+      formErrors.phone = 'Numero no valido';
+    }
+    if (!formData.date) {
+      formErrors.date = 'Dato no valido';
+    }
+    if (!formData.time) {
+      formErrors.time = 'Hora no valida';
+    }
+    if (formData.people <= 0) {
+      formErrors.people = 'El número de personas debe ser mayor que 0.';
+    }
+    return formErrors;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onReservationSubmit(formData);
-    setFormData({
-      name: '',
-      phone: '',
-      date: '',
-      time: '',
-      people: 1
-    });
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+    } else {
+      axios.post('http://localhost:8080/api/reservations', formData)
+        .then(response => {
+          onReservationSubmit(response.data);
+          setFormData({
+            name: '',
+            phone: '',
+            date: '',
+            time: '',
+            people: 1
+          });
+          setErrors({});
+        })
+        .catch(error => {
+          console.error('Error al guardar la reserva:', error);
+        });
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-          Nombre del Cliente
+          Nombre
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="name"
-          type="text"
           name="name"
           value={formData.name}
           onChange={handleChange}
-          required
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="text"
+          placeholder="Nombre"
         />
       </div>
       <div className="mb-4">
@@ -51,66 +80,55 @@ const ReservationForm = ({ onReservationSubmit }) => {
           Teléfono
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="phone"
-          type="tel"
           name="phone"
           value={formData.phone}
           onChange={handleChange}
-          required
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="text"
+          placeholder="Teléfono"
         />
+        {errors.phone && <p className="text-red-500 text-xs italic">{errors.phone}</p>}
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="date">
           Fecha
         </label>
-        <div className="relative">
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="date"
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-          />
-          <Calendar className="absolute right-3 top-2 h-5 w-5 text-gray-400" />
-        </div>
+        <input
+          name="date"
+          value={formData.date}
+          onChange={handleChange}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="date"
+        />
+        {errors.date && <p className="text-red-500 text-xs italic">{errors.date}</p>}
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="time">
           Hora
         </label>
-        <div className="relative">
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="time"
-            type="time"
-            name="time"
-            value={formData.time}
-            onChange={handleChange}
-            required
-          />
-          <Clock className="absolute right-3 top-2 h-5 w-5 text-gray-400" />
-        </div>
+        <input
+          name="time"
+          value={formData.time}
+          onChange={handleChange}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="time"
+        />
+        {errors.time && <p className="text-red-500 text-xs italic">{errors.time}</p>}
       </div>
-      <div className="mb-6">
+      <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="people">
-          Número de Personas
+          Personas
         </label>
-        <div className="relative">
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="people"
-            type="number"
-            name="people"
-            min="1"
-            value={formData.people}
-            onChange={handleChange}
-            required
-          />
-          <Users className="absolute right-3 top-2 h-5 w-5 text-gray-400" />
-        </div>
+        <input
+          name="people"
+          value={formData.people}
+          onChange={handleChange}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="number"
+          min="1"
+          placeholder="Número de personas"
+        />
+        {errors.people && <p className="text-red-500 text-xs italic">{errors.people}</p>}
       </div>
       <div className="flex items-center justify-between">
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">

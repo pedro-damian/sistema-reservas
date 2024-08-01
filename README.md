@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Rincón Gastronómico
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Rincón Gastronómico es una aplicación web para un restaurante que permite a los usuarios ver el menú, hacer reservaciones y ver sus reservaciones existentes.
 
-## Available Scripts
+## Características
 
-In the project directory, you can run:
+- **Página de Inicio**: Presenta un banner atractivo con un enlace al menú.
+- **Formulario de Reservaciones**: Permite a los usuarios realizar reservaciones ingresando su nombre, teléfono, fecha, hora y número de personas.
+- **Mis Reservaciones**: Muestra una lista de todas las reservaciones realizadas por el usuario.
+- **Pie de Página**: Contiene enlaces útiles como Ubicación, Acerca de, Ayuda y Política, cada uno con modales que proporcionan información adicional.
 
-### `npm start`
+## Tecnologías Utilizadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React**: Librería de JavaScript para construir la interfaz de usuario.
+- **React Router**: Para el manejo de rutas en la aplicación.
+- **Tailwind CSS**: Framework de CSS para estilos.
+- **Axios**: Librería para hacer solicitudes HTTP.
+- **Google Maps Embed API**: Para mostrar la ubicación del restaurante en un mapa dentro de un modal.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Instalación y Ejecución
 
-### `npm test`
+Para instalar y ejecutar el proyecto localmente, sigue estos pasos:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clona el repositorio:
+    ```sh
+        git clone https://github.com/tu-usuario/aluraflix.git
+    ```
+2. Navega al directorio del proyecto:
+    ```sh
+        cd sistema-reservas
+    ```
+3. Instala las dependencias:
+    ```sh
+        npm install
+    ```
+4. Instala react-router-dom:
+    ```sh
+        npm i react-router-dom
+    ```
+5. Instala react-icons:
+    ```sh
+        npm install react-icons
+    ```
+6. Instala react-modal:
+    ```sh
+        npm install react-modal
+    ```
+7. [Instala Tailwindcss](https://tailwindcss.com/docs/guides/create-react-app):
+    ```sh
+        npm install -D tailwindcss
+        npx tailwindcss init
+    ```
+8. Instala Axios:
+    ```sh
+        npm i axios
+    ```
 
-### `npm run build`
+9. Inicia la aplicación:
+    ```sh
+        npm start
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Estructura del Proyecto
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **src/components:** Contiene los componentes reutilizables de la aplicación como Header, Footer, HomeBanner, ReservationForm.
+- **src/pages:** Contiene las páginas de la aplicación como Home, Reservations, MyReservations.
+- **src/assets:** Contiene los recursos estáticos como imágenes.
+- **src/App.js:** El componente principal que maneja las rutas.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contribuciones
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+¡Las contribuciones son bienvenidas! Si deseas contribuir a este proyecto, por favor sigue estos pasos:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Realiza un fork del repositorio.
+2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
+3. Realiza tus cambios y haz commit (`git commit -am 'Añadir nueva funcionalidad'`).
+4. Haz push a la rama (`git push origin feature/nueva-funcionalidad`).
+5. Abre un Pull Request.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+¡Gracias por usar sistema de reservas! Si tienes alguna pregunta o sugerencia, no dudes en abrir un issue o enviar un pull request.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

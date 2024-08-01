@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { IoMdClose } from "react-icons/io";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaFacebook, FaTiktok, FaYoutube, FaWhatsapp } from "react-icons/fa";
 
 Modal.setAppElement("#root"); // Para accesibilidad: indica el elemento raíz del app
 
@@ -97,36 +97,26 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2 text-sm md:text-base">
               <li>
-                <button
-                  onClick={() => openModal("specials")}
-                  className="hover:text-yellow-400"
+                <a 
+                  className="hover:text-yellow-400 flex items-center gap-3"
                 >
-                  Especiales
-                </button>
+                  <FaFacebook /> Facebook
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => openModal("brands")}
-                  className="hover:text-yellow-400"
+                <a
+                  className="hover:text-yellow-400 flex items-center gap-3"
                 >
-                  Marcas
-                </button>
+                  <FaTiktok /> TikTok
+                </a>
               </li>
+              
               <li>
-                <button
-                  onClick={() => openModal("wishlist")}
-                  className="hover:text-yellow-400"
+                <a
+                  className="hover:text-yellow-400 flex items-center gap-3"
                 >
-                  Lista de deseos
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => openModal("tables")}
-                  className="hover:text-yellow-400"
-                >
-                  Mesas
-                </button>
+                  <FaWhatsapp/> 987654321
+                </a>
               </li>
             </ul>
           </div>

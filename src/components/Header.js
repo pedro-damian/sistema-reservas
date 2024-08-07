@@ -26,6 +26,7 @@ const Header = () => {
               <li><Link to="/menu" className="text-gray-300 hover:text-yellow-500">Menú</Link></li>
               <li><Link to="/reservations" className="text-gray-300 hover:text-yellow-500">Reservas</Link></li>
               <li><Link to="/my-reservations" className="text-gray-300 hover:text-yellow-500">Mis Reservas</Link></li>
+              <li><Link to="/favorites" className="text-gray-300 hover:text-yellow-500">Mis Favoritos</Link></li>
             </ul>
           </nav>
         </div>
@@ -52,6 +53,7 @@ const Header = () => {
           <li><Link to="/menu" className="text-gray-300 hover:text-yellow-500" onClick={toggleMenu}>Menú</Link></li>
           <li><Link to="/reservations" className="text-gray-300 hover:text-yellow-500" onClick={toggleMenu}>Reservas</Link></li>
           <li><Link to="/my-reservations" className="text-gray-300 hover:text-yellow-500" onClick={toggleMenu}>Mis Reservas</Link></li>
+          <li><Link to="/favorites" className="text-gray-300 hover:text-yellow-500" onClick={toggleMenu}>Favoritos</Link></li>
           <li><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">Registro</button></li>
           <li><button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full">Login</button></li>
         </ul>

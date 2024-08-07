@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Reservations from './pages/Reservaciones';
 import MyReservations from './pages/MyReservations';
 import Menu from './pages/Menu';
+import Favoritos from './pages/Favoritos';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/reservations" element={<Reservations />} />
         <Route path="/my-reservations" element={<MyReservations />} />
         <Route path="/menu" element={<Menu />} />
+        <Route path="/favorites" element={<Favoritos />} />
       </Routes>
     </Router>
   );

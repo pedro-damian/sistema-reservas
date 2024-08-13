@@ -55,9 +55,10 @@ Para instalar y ejecutar el proyecto localmente, sigue estos pasos:
         npm i axios
     ```
 
-9. Instala Libreria de Notificacion:
+9. Instala react-toastify (Libreria de Notificaciones de react):
     ```sh
-        npm install @mui/material @emotion/react @emotion/styled
+        npm install react-toastify
+
     ```
 
 10. Inicia la aplicación:

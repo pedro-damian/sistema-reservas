@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Importa todas las imágenes de los platos
 import cevicheImage from '../assets/dishes/ceviche.jpg';
@@ -47,6 +47,11 @@ const dishes = [
 
 const Cards = () => {
   const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setFavorites(savedFavorites);
+  }, []);
 
   const handleFavorite = (dish) => {
     setFavorites((prevFavorites) => {

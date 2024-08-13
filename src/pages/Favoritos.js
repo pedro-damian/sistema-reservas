@@ -1,36 +1,66 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import FavoritosBanner from '../components/FavoritosBanner';
+import ImagenBanner from "../assets/bannerMenu.webp"
 
 const Favoritos = () => {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    setFavorites(storedFavorites);
+    const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setFavorites(savedFavorites);
   }, []);
 
+  const removeFavorite = (dishId) => {
+    const updatedFavorites = favorites.filter((dish) => dish.id !== dishId);
+    setFavorites(updatedFavorites);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+  };
+
+  const removeAllFavorites = () => {
+    setFavorites([]);
+    localStorage.removeItem('favorites');
+  };
+
   return (
+    
     <div className="min-h-screen bg-gray-100 flex flex-col">
-      <Header />
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">Favoritos</h2>
-        {favorites.length === 0 ? (
-          <p>No tienes platos favoritos actualmente.</p>
-        ) : (
-          <ul className="space-y-4">
-            {favorites.map((dish, index) => (
-              <li key={index} className="bg-white shadow rounded-lg p-4">
-                <p><strong>Nombre:</strong> {dish.name}</p>
-                <p><strong>Descripción:</strong> {dish.description}</p>
-                <p><strong>Precio:</strong> {dish.price}</p>
-              </li>
+      <Header/>
+      <FavoritosBanner imageUrl={ImagenBanner} altText="Imagen del menú"/>
+      
+      {favorites.length > 0 ? (
+        <>
+          <button
+            onClick={removeAllFavorites}
+            className="mb-4 bg-red-500 text-white py-2 px-4 rounded"
+          >
+            Eliminar Todos los Favoritos
+          </button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {favorites.map((dish) => (
+              <div key={dish.id} className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center text-center">
+                <img src={dish.image} alt={dish.name} className="mb-4 w-full h-48 object-cover rounded-lg" />
+                <h2 className="text-xl font-bold mb-2">{dish.name}</h2>
+                <p className="mb-4">{dish.description}</p>
+                <p className="text-lg font-semibold mb-4">{dish.price}</p>
+                <button 
+                  onClick={() => removeFavorite(dish.id)}
+                  className="bg-red-500 text-white py-2 px-4 rounded"
+                >
+                  Quitar de Favoritos
+                </button>
+              </div>
             ))}
-          </ul>
-        )}
-      </main>
-      <Footer />
+          </div>
+        </>
+      ) : (
+        <p>No hay platos favoritos guardados.</p>
+      )}
+  
+    <Footer/>
     </div>
+    
   );
 };
 

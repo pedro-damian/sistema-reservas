@@ -22,13 +22,13 @@ const ReservationForm = ({ onReservationSubmit }) => {
   const validateForm = () => {
     let formErrors = {};
     if (!/^\d{9}$/.test(formData.phone)) {
-      formErrors.phone = 'Numero no valido';
+      formErrors.phone = 'Número no válido';
     }
     if (!formData.date) {
-      formErrors.date = 'Dato no valido';
+      formErrors.date = 'Fecha requerida';
     }
     if (!formData.time) {
-      formErrors.time = 'Hora no valida';
+      formErrors.time = 'Hora requerida';
     }
     if (formData.people <= 0) {
       formErrors.people = 'El número de personas debe ser mayor que 0.';
@@ -36,27 +36,27 @@ const ReservationForm = ({ onReservationSubmit }) => {
     return formErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
     } else {
-      axios.post('http://localhost:8080/api/reservations', formData)
-        .then(response => {
-          onReservationSubmit(response.data);
-          setFormData({
-            name: '',
-            phone: '',
-            date: '',
-            time: '',
-            people: 1
-          });
-          setErrors({});
-        })
-        .catch(error => {
-          console.error('Error al guardar la reserva:', error);
+      try {
+        const response = await axios.post('http://localhost:8080/api/reserva', formData);
+        onReservationSubmit(response.data);
+        setFormData({
+          name: '',
+          phone: '',
+          date: '',
+          time: '',
+          people: 1
         });
+        setErrors({});
+      } catch (error) {
+        console.error('Error al guardar la reserva:', error);
+        // Puedes agregar lógica para manejar errores de la solicitud aquí
+      }
     }
   };
 

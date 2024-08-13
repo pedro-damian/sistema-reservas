@@ -7,7 +7,7 @@ const MyReservations = () => {
   const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/reservations')
+    axios.get('http://localhost:8080/api/reservas')
       .then(response => {
         setReservations(response.data);
       })

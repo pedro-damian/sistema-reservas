@@ -5,7 +5,6 @@ import {
   FaMapMarkerAlt,
   FaFacebook,
   FaTiktok,
-  FaYoutube,
   FaWhatsapp,
 } from "react-icons/fa";
 

@@ -55,7 +55,12 @@ Para instalar y ejecutar el proyecto localmente, sigue estos pasos:
         npm i axios
     ```
 
-9. Inicia la aplicación:
+9. Instala Libreria de Notificacion:
+    ```sh
+        npm install @mui/material @emotion/react @emotion/styled
+    ```
+
+10. Inicia la aplicación:
     ```sh
         npm start
     ```
